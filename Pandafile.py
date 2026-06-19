@@ -222,6 +222,13 @@ df_csv_time_dif = df_csv_time2.loc[(df_csv_time2["Daily"] >= " 2021-01-15") &
 #df_fun = df_csv_time["ValueHumi"].value_counts(normalize=True , dropna=False)
 #print(df_fun)
 
+#df_des = df_csv_time.describe()
+#print(df_des)
 
+#df_des = df_csv_time.describe(percentiles= [0.10 , 0.90] , include= "all")
+#print(df_des)
+# Describe one column
+#df_des = df_csv_time["ValueHumi"].describe()
+#print(df_des)
 #///////////////////////////////////Sample//////////////////////////////////////
 
