@@ -153,13 +153,13 @@ import datetime as dt
 import pandas as pd
 
 df_csv_time =pd.read_csv("L1_Humidity_V1.0.0.csv")
-#print(df_csv_time.tail(10))
+print(df_csv_time.tail(10))
 
 df_csv_time2 = df_csv_time[["area" , "Daily" , "time"]]
 #print(df_csv_time2)
 
 df_types = df_csv_time2.dtypes   #show Data Types 
-print (df_types)
+#print (df_types)
 
 #////////////////////////Convert Str to Datetime////////////////////////////////////////
 df_csv_time2["Daily"] = pd.to_datetime(df_csv_time2["Daily"], errors='coerce', dayfirst=True)
@@ -192,6 +192,36 @@ del df_csv_time2["month"];
 df_csv_time_dif = df_csv_time2.loc[(df_csv_time2["Daily"] >= " 2021-01-15") & 
                                    (df_csv_time2["Daily"] < "2021-02-10")]
 #print(df_csv_time_dif)
+
+
+#///////////////////////////Generic Functions///////////////////////////////////
+#one column
+#df_fun = df_csv_time["ValueHumi"].min()
+#df_fun = df_csv_time["ValueHumi"].max()
+#df_fun = df_csv_time["ValueHumi"].mean()
+#df_fun = df_csv_time["ValueHumi"].sum()
+#print(df_fun)
+
+#two columns and more
+#df_fun = df_csv_time[["ValueHumi","installation"]].max()
+#print(df_fun)
+
+#all columns
+#df_fun = df_csv_time.max()
+#print(df_fun)
+
+#df_fun = df_csv_time["ValueHumi"].value_counts()
+#print(df_fun)
+
+#df_fun = df_csv_time["ValueHumi"].value_counts(normalize=True)
+#print(df_fun)
+
+#df_fun = df_csv_time["ValueHumi"].value_counts(bins= 5)
+#print(df_fun)
+
+#df_fun = df_csv_time["ValueHumi"].value_counts(normalize=True , dropna=False)
+#print(df_fun)
+
 
 #///////////////////////////////////Sample//////////////////////////////////////
 
