@@ -1,5 +1,5 @@
 #/////////////////////////Create Data Fram in Panda/////////////////////////
-#import pandas as pd
+import pandas as pd
 
 #df = {'Name': ['luca', 'Emma', 'Gianula','Sara'],
    # 'Age':[35,30,28,34],  
@@ -12,8 +12,8 @@
 
 #/////////////////////////////Read Excel File////////////////////////////////
 
-#df_csv = pd.read_csv("L1_Energy_V1.0.0.csv")
-#print(df_csv.tail(10))
+df_csv = pd.read_csv("L1_Energy_V1.0.0.csv")
+print(df_csv.tail(10))
 
 #print(df_csv.dtypes)
 
@@ -230,5 +230,198 @@ df_csv_time_dif = df_csv_time2.loc[(df_csv_time2["Daily"] >= " 2021-01-15") &
 # Describe one column
 #df_des = df_csv_time["ValueHumi"].describe()
 #print(df_des)
+
+#////////////////////////////////Group By///////////////////////////////////////
+
+#df_gr = df_csv_time.groupby(["Daily"]).min()
+#print(df_gr)
+
+#df_gr = df_csv_time.groupby(["Daily"]).min().reset_index()
+#print(df_gr)
+
+#df_gr = df_csv_time.groupby(["Daily" , "area"]).min().reset_index()
+#print(df_gr)
+
+#df_gr = df_csv_time.groupby(["Daily"]).agg({"ValueHumi" : "min" , "time" : "max"}).reset_index()
+#print(df_gr)
+
+#df_gr = df_csv_time.groupby(["Daily"]).agg({"ValueHumi" : "min" , "time" :["max" , "min"]}).reset_index()
+#print(df_gr)
+
+#////////////////////////////////////pivot/////////////////////////////////////////////
+#group by
+#df_pivt = df_csv_time.groupby(["Daily" , "area"]).max().reset_index()
+#print(df_pivt)
+#WAY 3
+#df_pivt.to_csv(r"filepivot1.csv")
+
+#Pivot
+#df_pivt = df_csv_time.groupby(["Daily" , "area"]).max().unstack("Daily").reset_index()
+#print(df_pivt)
+#WAY 3
+#df_pivt.to_csv(r"filepivot2.csv")
+
+#///////////////////////////////////transpose///////////////////////////////////
+#df_tra = df_csv_time.describe(percentiles=[0.10, 0.90], include="all")
+#df_tra_t = df_tra.transpose() 
+#print(df_tra_t)
+
+#print (df_tra_t.columns)
+#print (df_tra_t.index)
+
+#///////////////////////////////Comulative Sum//////////////////////////////////
+#df_sum1 = df_csv_time["ValueHumi"].cumsum()
+#print(df_sum1)
+#df_sum2 = df_csv_time[["ValueHumi", "area"]].cumsum()
+#print(df_sum2)
+#df_sum3 = df_csv_time.groupby(["ValueHumi"]).sum().cumsum()
+#print(df_sum3)
+#df_sum4 = df_csv_time.groupby(["ValueHumi", "area"]).sum().cumsum()
+#print(df_sum4)
+
+#df_sum_t1 = df_csv_time.groupby(["ValueHumi", "area"]).sum().groupby("area").cumsum()
+#print(df_sum_t1)
+#df_sum_t2 = df_csv_time.groupby(["ValueHumi", "area"]).sum().groupby("area").cumsum()["Daily"]
+#print(df_sum_t2)
+
+#///////////////////////////////////Merge///////////////////////////////////////
+# Join in SQL
+#Inner Join 
+Tabel1 = pd.DataFrame({"key": ["K0", "K1", "K2", "K3"],
+"column A": ["A0", "A1", "A2", "A3"],
+"column B": ["B0", "B1", "B2", "B3"]})
+
+Table2 = pd.DataFrame({"key": ["K0", "K1", "K2", "K3"],
+"column C": ["C0", "C1", "C2", "C3"],
+"Column D": ["D0", "D1", "D2", "D3"]})
+
+df_merge = pd.merge(Tabel1, Table2, on="key")
+#print(df_merge)
+
+#Becarful "Key" columns have the same name.
+
+Table3 = pd.DataFrame({"key1": ["K0", "K0", "K1", "K2"],
+"key2": ["K0", "K1", "K0", "K1"],
+"Column A": ["A0", "A1", "A2", "A3"],
+"Column B": ["B0", "B1", "B2", "B3"]})
+
+Table4 = pd.DataFrame({"key1": ["K0", "K1", "K1", "K2"],
+"key2": ["K0", "K0", "K0", "K0"],
+"Column C": ["C0", "C1", "C2", "C3"],
+"Column D": ["D0", "D1", "D2", "D3"]})
+
+#df_merge2 = pd.merge(Table3, Table4, on=["key1", "key2"]) # how = "inner"
+#print(df_merge2)
+
+#Left Join
+#df_merge_left = pd.merge(Table3, Table4, on=["key1", "key2"] , how="left") # how = "inner"
+#print(df_merge_left)
+
+#Right Join
+#df_merge_Right = pd.merge(Table3, Table4, on=["key1", "key2"] , how="right") # how = "Right"
+#print(df_merge_Right)
+
+#Outer Join
+#df_merge_outer = pd.merge(Table3, Table4, on=["key1", "key2"] , how="outer") # how = "Outer"
+#print(df_merge_outer)
+
+#Validate
+
+#df_merge_outer_V1 = pd.merge(Table3, Table4, on=["key1", "key2"], how="outer", validate="1:1")
+#print(df_merge_outer_V1)  #ERROR
+
+#df_merge_outer_V2 = pd.merge(Table3, Table4, on=["key1", "key2"], how="outer", validate="m:1")
+#print(df_merge_outer_V2) #ERROR
+
+#df_merge_outer_V3 = pd.merge(Table3, Table4, on=["key1", "key2"], how="outer", validate="1:m")
+#print(df_merge_outer_V3)
+
+#df_merge_outer_V4 = pd.merge(Table3, Table4, on=["key1", "key2"], how="outer", validate="m:m")
+#print(df_merge_outer_V4)
+
+#df_merge_samekey = pd.merge(Table3, Table4, on=["key1", "key2"], how="outer", suffixes=("_left", "_right"))
+#print(df_merge_samekey)
+
+#Becarful "Key" columns have the different names.
+
+Table5 = pd.DataFrame({"key1": ["K0", "K0", "K1", "K2"],
+"key2": ["K0", "K1", "K0", "K1"],
+"Column A": ["A0", "A1", "A2", "A3"],
+"Column B": ["B0", "B1", "B2", "B3"]})
+
+Table6 = pd.DataFrame({"key1": ["K0", "K1", "K1", "K2"],
+"key2": ["K0", "K0", "K0", "K0"],
+"Column C": ["C0", "C1", "C2", "C3"],
+"Column D": ["D0", "D1", "D2", "D3"]})
+
+#Table6 = Table6.rename(columns={"key1":"KeyNew1", "key2":"KeyNew2"})
+
+#df_merge_diffkey = pd.merge(Table5, Table6, left_on=["key1", "key2"],right_on= ["KeyNew1" , "KeyNew2"] , how="outer")
+#print(df_merge_diffkey)
+
+#/////////////////////////////Concatenate///////////////////////////////////////
+#Union in SQL
+
+#df_merge = pd.merge(Tabel1, Table2, on="key")
+#print(df_merge)  #inner join in sql
+
+#df_cocatenate = pd.concat([Tabel1, Table2])
+#print(df_cocatenate)   #union in sql
+
+#df_cocatenate = pd.concat([Tabel1, Table2] , ignore_index=True)
+#print(df_cocatenate)   #union in sql, with 0 to N index that is ok.
+
+#df_cocatenate = pd.concat([Tabel1, Table2] , keys=["sinistra", "destra"])
+#print(df_cocatenate)   #union in sql two part of indexes.
+
+#df_cocatenate = pd.concat([Tabel1, Table2], keys=["sinistra", "destra"]).reset_index(level=1, drop="index")
+#print(df_cocatenate) 
+
 #///////////////////////////////////Sample//////////////////////////////////////
+
+#df_sample = df_csv_time.sample(n=5, random_state=0)
+#print(df_sample)
+
+#df_sample2 = df_csv_time.groupby("ValueHumi").sample(frac=0.6)
+#print(df_sample2)
+
+#df_csv_time.to_csv(r"samplefile2.csv")
+
+
+#////////////////////////////////Plot///////////////////////////////////////////
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+#df_plot = df_csv_time["area"].hist(bins=6)
+#print(df_plot)
+#df_plot = df_csv_time.hist(bins=6, alpha=0.8,grid=False, figsize=(12,9))
+#show(df_plot)
+
+#df_csv_time =pd.read_csv("L1_Humidity_V1.0.0.csv")
+#print(df_csv_time.tail(10))
+#print("columns in CSV:" , list (df_csv_time.columns))
+#x_col = df_csv_time.columns[0]
+#y_col = input(f"enter column name for y-axis (options:{list)df_csv_time.columns[1])}): ")
+
+
+
+
+df_plot = df_csv_time.plot.scatter(x="area",y="Daily", s=50)
+print(df_plot)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
