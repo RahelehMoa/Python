@@ -303,7 +303,108 @@ print("Second Corrent:", d2.second)
 
 print("---------------------------------------------------------------------------------------")
 
+#Different Times
 
+data1 = dt.date(2026, 1, 20)
+data2 = dt.date(2026, 6, 23)
+diff = data2- data1
+print(diff)
+print(type(diff))
 
+print("---------------------------------------------------------------------------------------")
 
+dt_1 = dt.datetime(2026, 4, 8, 16, 10, 0)
+dt_2 = dt.datetime(2026, 6, 23, 22, 29, 12)
+dt_diff = dt_2- dt_1
+print(dt_diff)
+print(type(dt_diff))
 
+print(dt_diff.days)
+print(dt_diff.seconds)
+
+print("---------------------------------------------------------------------------------------")
+
+t1 = dt.timedelta(12, 8)
+t2 = dt.timedelta(weeks=3, days=12, hours=20)
+print(t1)
+print(t2)
+
+print("---------------------------------------------------------------------------------------")
+
+# Sum or Differents of Times
+
+dt_2 = dt.datetime(2026, 6, 23, 22, 29, 12)
+t2 = dt.timedelta(weeks=3, days=12, hours=20)
+t_d1 = dt_2 + t2
+t_d2 = dt_2- t2
+print(t_d1)
+print(t_d2)
+print(type(t_d1))
+print(type(t_d2))
+
+print("---------------------------------------------------------------------------------------")
+
+print("date", t_d1.date(), "has day index:", t_d1.weekday())
+print("date", t_d2.date(), "has day index::", t_d2.weekday())
+
+print("---------------------------------------------------------------------------------------")
+
+import datetime as dt
+data2 = dt.date(2026, 6, 23)
+data_s = str(data2)   #string
+data_s2 = data2.strftime("%d/%m/%Y")   #string with another format
+print(data_s)
+print(data_s2)
+print(type(data_s))
+print(type(data_s2))
+
+print("---------------------------------------------------------------------------------------")
+
+new_datetime = dt.datetime.strptime(data_s2, "%d/%m/%Y")
+print(new_datetime)
+new_date = new_datetime.date()
+print(new_date)
+print(type(new_datetime))
+print(type(new_date))
+
+print("New Date Format:")
+
+print(data2.strftime("%d/%m/%y"))
+print(data2.strftime("%d/%b/%y"))
+
+print("---------------------------------------------------------------------------------------")
+
+print("Convert int to String and List , Dictionary :")
+
+string = "-10"
+num = int(string)
+print(type(num))
+print(num + 1)
+
+num =-10
+string = str(num)
+print(type(string))
+
+#string = "10, stringa"
+#num = int(string)    #ERROR
+l_C = [1, 2, 3, "quattro"]
+l_s = str(l_C)
+print(type(l_s))
+print(l_s)
+#l_C_list = list(l_s)
+#print(type(l_C_list))
+
+#Italian_English2 = {"casa": "house", "cane": "dog", "patata": 4}
+#keys = list(Italian_English.keys())
+#values222 = list(Italian_English2.values())
+#print(type(keys))
+#print(type(values222))
+
+#d22 = dict(zip(keys, values))
+#print(type(d22))
+
+print("list to set:")
+list_set = [1, 2, 3, 5, 1, 2, 2, 3]
+set = set(list_set)
+print(type(list_set))
+print(list_set)
