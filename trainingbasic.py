@@ -403,8 +403,105 @@ print(l_s)
 #d22 = dict(zip(keys, values))
 #print(type(d22))
 
-print("list to set:")
-list_set = [1, 2, 3, 5, 1, 2, 2, 3]
-set = set(list_set)
-print(type(list_set))
-print(list_set)
+#print("list to set:")
+#list_set = [1, 2, 3, 5, 1, 2, 2, 3]
+#set = set(list_set)
+#print(type(list_set))
+#print(list_set)
+
+print("---------------------------------------------------------------------------------------")
+# you can put any number insted of count
+count = 6
+if count < 3:
+   print("smaller than 3")
+elif count == 3:
+   print("equal to 3")
+else:
+   print("greater than 3")
+
+print("---------------------------------------------------------------------------------------")
+# you can put any number insted of count becarful 1 result is different with <=2.
+count = 1
+while count <= 2:
+      print(count)
+      count += 1
+else:
+      print("fine!")
+
+print("---------------------------------------------------------------------------------------")
+# you can put any number insted of count and a.
+# we have two conditions with IF that we should use both of IF toghther.
+a = 2
+count = 2
+if count < 3:
+   a += 1
+if count == 2:
+   a += 1
+else:
+   a-= 1
+print(a)
+
+print("---------------------------------------------------------------------------------------")
+
+a = 0
+while a < 3:
+    print(a)
+    a += 1
+
+print("---------------------------------------------------------------------------------------")
+a = 2
+b = 5
+if (a == 0) or (b < 10):
+    print("True")
+if (a == 2) and (b < 5):
+    print("Falso")
+
+print("---------------------------------------------------------------------------------------")
+a = 5
+b = "Home"
+
+if (type(a) == int) and (len(b) > 2):
+   print("first if")
+if (a > 2) or (b.upper() == "home"):
+   print("Second if")
+
+print("---------------------------------------------------------------------------------------")
+
+# loops For
+
+for number in range(1,10):
+    print(number)
+
+list_d = ['pippo', 'pluto', 'paperino']
+for item in list_d:
+    print(item)
+
+name = 'zio paperone'
+for letter in name:
+    print(letter)
+
+num_range = range(1,10)
+print(type(num_range))
+
+
+persons = [(75,1.80), (95,1.58), (60,1.70)]
+IMC_list = []
+for item in persons:
+  if item[1] != 0:
+    IMC = item[0] / (item[1]**2)
+    print(IMC)
+    IMC_list.append(IMC)
+
+print(IMC_list)
+print(type(IMC_list))
+
+num_range = range(1,10) # numbers from 1 to 9
+num_list = [x for x in num_range] # lists with numbers from 1 to 9
+num_pari = [x for x in num_range if x%2 == 0] # numbers pairs
+print(num_list)
+print(num_pari)
+
+lista_a = ["qui", "quo", "qua", "paperino", "paperoga", "paperina"]
+lista_b = ["qui", "qua", "zio paperone", "gastone paperone"]
+lista_c = [character for character in lista_a if character not in lista_b] # a- b
+print(lista_c)
