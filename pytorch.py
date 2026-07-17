@@ -190,3 +190,79 @@ print(z)
 
 reshape_tensor = torch.reshape(z,(2,2))
 print(reshape_tensor)
+
+print("----------------------------------------------------------")
+
+# Create two tensors
+view_as_tensor1 = torch.randn(12)
+view_as_tensor2 = torch.randn(3, 4)
+ 
+# Use view_as to reshape tensor1 to have the same shape as tensor2
+reshaped_tensor = view_as_tensor1.view_as(view_as_tensor2)
+
+#print
+print(view_as_tensor1)
+print(view_as_tensor2)
+print(reshaped_tensor)
+
+print(f"Original tensor shape: {view_as_tensor1.shape}")
+print(f"Target tensor shape: {view_as_tensor2.shape}")
+print(f"Reshaped tensor shape: {reshaped_tensor.shape}")
+
+print("----------------------------------------------------------")
+
+tensor_a = torch.tensor([[1,2],[1,3]])
+tensor_b = torch.tensor([[2,3],[0,4]])
+
+#Addition
+print(tensor_a + tensor_b)
+
+#Subtraction
+print(tensor_a - tensor_b)
+
+#Maltiplication
+print(tensor_a * tensor_b)
+
+#Division
+print(tensor_a / tensor_b)
+
+#Exponent
+print(tensor_a ** tensor_b)
+
+#Matrix Maltiplication
+Matrix_tensor = torch.randint (1,5,(4,4))
+Matrix_multi = Matrix_tensor @ Matrix_tensor.T
+
+print(Matrix_multi)
+print(Matrix_tensor)
+
+#Matrix Maltiplication way 2
+Matrix_multi_New = Matrix_tensor.matmul(Matrix_tensor.T)
+print(Matrix_multi_New)
+
+print("----------------------------------------------------------")
+Matrix_tensor = torch.randint (1,5,(4,4))
+print(Matrix_tensor)
+
+Sum_tensor = Matrix_tensor.sum()
+print(Sum_tensor)
+
+agg_item = Sum_tensor.item()
+print(agg_item)
+
+print("----------------------------------------------------------")
+
+x1 = torch.rand(1)
+y1 = torch.rand(1)
+
+print(x1)
+print(y1)
+
+#Normal Addition 
+z1 = x1 + y1
+print(z1)
+
+#In_place Addition 
+z2 = x1.add_(y1)
+print(z2)
+print(x1)
