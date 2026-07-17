@@ -266,3 +266,49 @@ print(z1)
 z2 = x1.add_(y1)
 print(z2)
 print(x1)
+
+print("----------------------------------------------------------")
+
+# we often change shape tensor 
+# 3 * 256 * 256 - Image Size
+# N * 3 * 256 * 256 - N is the Batch Size
+
+a1 = torch.rand(3,256,256)
+b1 = a1.unsqueeze(0)
+
+print(a1.shape)
+print(b1.shape)
+
+print("----------------------------------------------------------")
+
+c1 = torch.rand(1,1,1,1,1,1)
+print(c1)
+
+a2 = torch.rand(1,20)
+print(a2.shape)
+print(a2)
+
+b2 = a2.squeeze(0)
+print(b2.shape)
+print(b2)
+
+print("----------------------------------------------------------")
+
+#Numpay and Pytorch
+
+numpay_array = np.ones((2,3))
+print(numpay_array)
+
+pytorch_tensor = torch.from_numpy(numpay_array)
+print(pytorch_tensor)
+
+print(numpay_array.dtype)
+print(pytorch_tensor.dtype)
+
+pytorch_rand = torch.rand(2,3)
+print(pytorch_rand)
+
+numpay_rand = pytorch_rand.numpy()
+print(numpay_rand)
+
+print("----------------------------------------------------------")
